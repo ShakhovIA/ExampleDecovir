@@ -870,6 +870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e705b8aa79872f43a521d4e3e062f50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  URLPlayerCfg: {fileID: 1457701952}
 --- !u!114 &2005248706
 MonoBehaviour:
   m_ObjectHideFlags: 0

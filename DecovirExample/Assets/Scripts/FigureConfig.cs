@@ -89,11 +89,14 @@ public class FigureConfig : MonoBehaviour {
 
     public IEnumerator GravityStart(GameObject temp)
     {
-        while(temp.transform.position.y>-60)
+
+        while(temp != null&&temp.transform.position.y>-60)
         {
             yield return new WaitForSeconds(0.7f/Speed);
+            if(temp != null)
             temp.transform.position = new Vector2(temp.transform.position.x, temp.transform.position.y - 20);
         }
+        if(temp != null)
             Destroy(temp);
     }
 }
