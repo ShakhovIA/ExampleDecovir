@@ -10,6 +10,7 @@ public class XMLReader : MonoBehaviour {
     private XElement XmlElement;
 
     [SerializeField] private PlayerConfig URLPlayerConfig;
+    [SerializeField] private FigureConfig URLFigureConfig;
 
     private void Awake()
     {
@@ -44,12 +45,16 @@ public class XMLReader : MonoBehaviour {
 
         foreach (XElement Cfg in tempElement.Elements("BlockConfigForWave" + waveNum))
         {
-            //float SizeVertically = float.Parse(Cfg.Attribute("SizeVertically").Value);
-            //float SizeHorizontally = float.Parse(Cfg.Attribute("SizeHorizontally").Value);
-            //float Speed = float.Parse(Cfg.Attribute("Speed").Value);
-            //string Example = Cfg.Attribute("Example").Value;
+            float SizeX = float.Parse(Cfg.Attribute("SizeX").Value);
+            float SizeY = float.Parse(Cfg.Attribute("SizeY").Value);
+            float Speed = float.Parse(Cfg.Attribute("Speed").Value);
+            string Example = Cfg.Attribute("ExampleAnswer").Value;
 
-            //URLPlayerConfig.Speed = Speed;
+            URLFigureConfig.SizeX = SizeX;
+            URLFigureConfig.SizeY = SizeY;
+            URLFigureConfig.Speed = Speed;
+            URLFigureConfig.NumText.text = Example;
+            URLFigureConfig.CreateFigure();
         }
     }
 }

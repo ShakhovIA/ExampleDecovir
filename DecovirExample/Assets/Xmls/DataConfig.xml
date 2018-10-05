@@ -2,6 +2,6 @@
 <Config>
   <PlayerConfigForWave0 Speed="3" SizeX="4" SizeY="1" Example="x+2=5"/>
   <PlayerConfigForWave1 Speed="5" SizeX="2" SizeY="1" Example="x-3=6"/>
-  <BlockConfigForWave0 MaxEnemy="7" Speed="8" ExampleAnswer="3"/>
-  <BlockConfigForWave1 MaxEnemy="10" Speed="9" ExampleAnswer="9"/>
+  <BlockConfigForWave0 MaxEnemy="7" Speed="8" SizeX="2" SizeY="4" ExampleAnswer="3"/>
+  <BlockConfigForWave1 MaxEnemy="10" Speed="9" SizeX="3" SizeY="3" ExampleAnswer="9"/>
 </Config>
