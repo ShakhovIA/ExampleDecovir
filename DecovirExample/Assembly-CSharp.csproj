@@ -63,13 +63,12 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\FigureConfig.cs" />
     <Compile Include="Assets\Scripts\FigureLogic.cs" />
+    <Compile Include="Assets\Scripts\MonoSingleton.cs" />
     <Compile Include="Assets\Scripts\PlayerConfig.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\PlayZone.cs" />
     <Compile Include="Assets\Scripts\XMLReader.cs" />
-    <None Include="Assets\Xmls\DataConfig.xml">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="Assets\Xmls\DataConfig.xml" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/BrawiX/Pictures/DecovirExample/ExampleDecovir/DecovirExample/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

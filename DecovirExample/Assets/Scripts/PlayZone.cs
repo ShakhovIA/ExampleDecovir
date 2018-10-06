@@ -6,6 +6,7 @@ public class PlayZone : MonoBehaviour {
 
     static public int M=40;
     static public int N=30;
+    static public int CurrentZonePlay = 0;
     [SerializeField] private GameObject Cell;
     [SerializeField] private Transform Parent;
 

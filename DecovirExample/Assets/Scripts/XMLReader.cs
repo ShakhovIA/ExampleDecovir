@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Xml.Linq;
 
-public class XMLReader : MonoBehaviour {
+public class XMLReader : MonoSingleton<XMLReader> {
 
     [SerializeField] private string URLatXml;
     private XDocument XmlFile;
@@ -19,6 +19,7 @@ public class XMLReader : MonoBehaviour {
 
     public void NextWave(int waveNum)
     {
+        PlayZone.CurrentZonePlay++;
         XmlParserConfig(XmlElement,waveNum);
     }
 
@@ -35,26 +36,48 @@ public class XMLReader : MonoBehaviour {
             float SizeX = float.Parse(Cfg.Attribute("SizeX").Value);
             float SizeY = float.Parse(Cfg.Attribute("SizeY").Value);
             float Speed = float.Parse(Cfg.Attribute("Speed").Value);
+            string MathExample = Cfg.Attribute("Example").Value;
+            int ExampleAnswer = int.Parse(Cfg.Attribute("ExampleAnswer").Value);
             //string Example = Cfg.Attribute("Example").Value;
 
             URLPlayerConfig.SizeX = SizeX;
             URLPlayerConfig.SizeY = SizeY;
             URLPlayerConfig.Speed = Speed;
+            URLPlayerConfig.MathExample.text = MathExample;
+            URLPlayerConfig.NeedNum = ExampleAnswer;
             URLPlayerConfig.reSizePlayer();
         }
 
         foreach (XElement Cfg in tempElement.Elements("BlockConfigForWave" + waveNum))
         {
+            int MaxFigure = int.Parse(Cfg.Attribute("MaxEnemy").Value);
             float SizeX = float.Parse(Cfg.Attribute("SizeX").Value);
             float SizeY = float.Parse(Cfg.Attribute("SizeY").Value);
             float Speed = float.Parse(Cfg.Attribute("Speed").Value);
-            string Example = Cfg.Attribute("ExampleAnswer").Value;
+            int Example = int.Parse(Cfg.Attribute("ExampleAnswer").Value);
 
             URLFigureConfig.SizeX = SizeX;
             URLFigureConfig.SizeY = SizeY;
             URLFigureConfig.Speed = Speed;
-            URLFigureConfig.NumText.text = Example;
-            URLFigureConfig.CreateFigure();
+            StartCoroutine(CreateNewFigure(MaxFigure,SizeX, SizeY, Speed, Example));
+            
         }
+    }
+
+    private IEnumerator CreateNewFigure(int maxfigure,float sizex,float sizey,float speed,int example)
+    {
+
+        while (maxfigure > 0)
+        {
+            yield return new WaitForSeconds(Random.Range(0.5f, 1.3f));
+            int Temp = Random.Range(example, example + Random.Range(example - 2, example + 2));
+            if (maxfigure - 1 <= 0)
+                Temp = example;
+            URLFigureConfig.Num = Temp;
+            URLFigureConfig.NumText.text = Temp.ToString();
+            URLFigureConfig.CreateFigure();
+            maxfigure--;
+        }
+        yield return 0;
     }
 }

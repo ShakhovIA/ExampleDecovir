@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerConfig : MonoBehaviour {
 
@@ -11,6 +12,9 @@ public class PlayerConfig : MonoBehaviour {
     [SerializeField]
     private float sizeY;
     [SerializeField] private GameObject PlayerCell;
+
+    public int NeedNum;
+    public Text MathExample;
 
 
     public float Speed

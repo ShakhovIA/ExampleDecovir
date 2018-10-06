@@ -14,6 +14,7 @@ public class FigureConfig : MonoBehaviour {
     [SerializeField] private GameObject FigureCell;
     [SerializeField] private Text numText;
 
+    public int Num;
 
     public float Speed
     {
@@ -74,11 +75,15 @@ public class FigureConfig : MonoBehaviour {
     {
         GameObject Temp = Instantiate<GameObject>(gameObject, transform.parent);
 
-        for (int i = 0; i < SizeX; i++)
+        for (int i = 0; i < SizeY; i++)
         {
-            for (int j = 0; j < SizeY; j++)
+            for (int j = 0; j < SizeX; j++)
             {
                 var obj=Instantiate<GameObject>(FigureCell, new Vector2(transform.position.x +20 * j, transform.position.y+ 20 * i), Quaternion.identity, Temp.transform);
+                if (i + 1 == SizeY && j + 1 == SizeX)
+                {
+                    Temp.transform.position = new Vector2(Random.Range(20 * Random.Range(0, (int)PlayZone.N - sizeX), (PlayZone.N * 20) - (obj.transform.position.x + 20)), Temp.transform.position.y);
+                }
                 obj.transform.SetSiblingIndex(0);
             }
         }

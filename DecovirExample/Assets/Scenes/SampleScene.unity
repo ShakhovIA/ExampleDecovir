@@ -408,7 +408,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -479,9 +479,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1457701955}
   - component: {fileID: 1457701954}
-  - component: {fileID: 1457701953}
   - component: {fileID: 1457701952}
   - component: {fileID: 1457701956}
+  - component: {fileID: 1457701953}
   m_Layer: 5
   m_Name: Player
   m_TagString: Untagged
@@ -504,15 +504,17 @@ MonoBehaviour:
   sizeX: 0
   sizeY: 0
   PlayerCell: {fileID: 1157993707899302, guid: 673e41baa7e5f5243af9a4ee3a5dfc4a, type: 2}
+  NeedNum: 0
+  MathExample: {fileID: 1457701953}
 --- !u!114 &1457701953
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1457701951}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -523,14 +525,20 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 1
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 
 --- !u!222 &1457701954
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -871,6 +879,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   URLPlayerCfg: {fileID: 1457701952}
+  URLFigureCfg: {fileID: 2005248706}
 --- !u!114 &2005248706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -887,6 +896,7 @@ MonoBehaviour:
   sizeY: 0
   FigureCell: {fileID: 1022225473260884, guid: dfcc14d9f5c1a7246931fe1f425eb85f, type: 2}
   numText: {fileID: 398282088}
+  Num: 0
 --- !u!114 &2005248707
 MonoBehaviour:
   m_ObjectHideFlags: 0
