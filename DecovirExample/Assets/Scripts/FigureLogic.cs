@@ -20,16 +20,21 @@ public class FigureLogic : MonoBehaviour {
                         {
                             if (gameObject.transform.position.x + (20 * a) <= URLPlayerCfg.transform.position.x + (20 * URLPlayerCfg.SizeX))
                             {
-                                //Destroy(gameObject);
-                                print("intersect1");
                                 if (URLFigureCfg.Num == URLPlayerCfg.NeedNum)
                                 {
-                                    print("OK");
                                     StopAllCoroutines();
+                                    XMLReader.Instance().NextWave(PlayZone.CurrentZonePlay);
+                                    ScoreUpdater.Instance().Score++;
+                                    ScoreUpdater.Instance().UpdScore();
 
                                 }
-                                else print("neOK");
-                                gameObject.SetActive(false);
+                                else
+                                {
+                                    ScoreUpdater.Instance().YouLose();
+                                    StopAllCoroutines();
+                                    Destroy(gameObject);
+                                }
+                                    gameObject.SetActive(false);
                             }
                         }
                     }
@@ -39,14 +44,21 @@ public class FigureLogic : MonoBehaviour {
                         {
                             if (gameObject.transform.position.x + (20 * a) >= URLPlayerCfg.transform.position.x)
                             {
-                                //Destroy(gameObject);
-                                print("intersect2");
+
                                 if (URLFigureCfg.Num == URLPlayerCfg.NeedNum)
                                 {
-                                    print("OK");
+
                                     StopAllCoroutines();
+                                    XMLReader.Instance().NextWave(PlayZone.CurrentZonePlay);
+                                    ScoreUpdater.Instance().Score++;
+                                    ScoreUpdater.Instance().UpdScore();
                                 }
-                                else print("neOK");
+                                else
+                                {
+                                    ScoreUpdater.Instance().YouLose();
+                                    StopAllCoroutines();
+                                    Destroy(gameObject);
+                                }
                                 gameObject.SetActive(false);
                             }
                         }

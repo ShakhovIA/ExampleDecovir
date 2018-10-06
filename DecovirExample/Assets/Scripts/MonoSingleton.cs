@@ -10,7 +10,7 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
     public MonoSingleton()
     { }
 
-    public static T getInstance()
+    public static T Instance()
     {
         if (instance == null)
             instance = (T)FindObjectOfType(typeof(T));

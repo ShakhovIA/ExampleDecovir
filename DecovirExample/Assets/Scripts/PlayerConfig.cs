@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerConfig : MonoBehaviour {
+public class PlayerConfig : MonoSingleton<PlayerConfig> {
 
     [SerializeField]
     private float speed;
@@ -15,6 +15,7 @@ public class PlayerConfig : MonoBehaviour {
 
     public int NeedNum;
     public Text MathExample;
+
 
 
     public float Speed
@@ -64,7 +65,8 @@ public class PlayerConfig : MonoBehaviour {
         {
             for (int j = 0; j <SizeX ; j++)
             {
-                Instantiate<GameObject>(PlayerCell, new Vector2(20 * j, 20 * i), Quaternion.identity, transform);
+                var Temp=Instantiate<GameObject>(PlayerCell, new Vector2(20 * j, 20 * i), Quaternion.identity, transform);
+                Temp.transform.SetSiblingIndex(0);
             }
         }
     }

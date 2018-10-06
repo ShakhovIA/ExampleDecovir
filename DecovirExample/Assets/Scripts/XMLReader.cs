@@ -31,22 +31,35 @@ public class XMLReader : MonoSingleton<XMLReader> {
 
     private void XmlParserConfig(XElement tempElement,int waveNum)
     {
-        foreach (XElement Cfg in tempElement.Elements("PlayerConfigForWave"+waveNum))
-        {
-            float SizeX = float.Parse(Cfg.Attribute("SizeX").Value);
-            float SizeY = float.Parse(Cfg.Attribute("SizeY").Value);
-            float Speed = float.Parse(Cfg.Attribute("Speed").Value);
-            string MathExample = Cfg.Attribute("Example").Value;
-            int ExampleAnswer = int.Parse(Cfg.Attribute("ExampleAnswer").Value);
-            //string Example = Cfg.Attribute("Example").Value;
+        if (waveNum == 0)
+            foreach (XElement Cfg in tempElement.Elements("PlayerConfigForWave" + waveNum))
+            {
+                float SizeX = float.Parse(Cfg.Attribute("SizeX").Value);
+                float SizeY = float.Parse(Cfg.Attribute("SizeY").Value);
+                float Speed = float.Parse(Cfg.Attribute("Speed").Value);
+                string MathExample = Cfg.Attribute("Example").Value;
+                int ExampleAnswer = int.Parse(Cfg.Attribute("ExampleAnswer").Value);
+                //string Example = Cfg.Attribute("Example").Value;
 
-            URLPlayerConfig.SizeX = SizeX;
-            URLPlayerConfig.SizeY = SizeY;
-            URLPlayerConfig.Speed = Speed;
-            URLPlayerConfig.MathExample.text = MathExample;
-            URLPlayerConfig.NeedNum = ExampleAnswer;
-            URLPlayerConfig.reSizePlayer();
-        }
+                URLPlayerConfig.SizeX = SizeX;
+                URLPlayerConfig.SizeY = SizeY;
+                URLPlayerConfig.Speed = Speed;
+                URLPlayerConfig.MathExample.text = MathExample;
+                URLPlayerConfig.NeedNum = ExampleAnswer;
+                URLPlayerConfig.reSizePlayer();
+            }
+        else foreach (XElement Cfg in tempElement.Elements("PlayerConfigForWave" + waveNum))
+            {
+                float Speed = float.Parse(Cfg.Attribute("Speed").Value);
+                string MathExample = Cfg.Attribute("Example").Value;
+                int ExampleAnswer = int.Parse(Cfg.Attribute("ExampleAnswer").Value);
+                //string Example = Cfg.Attribute("Example").Value;
+
+
+                URLPlayerConfig.Speed = Speed;
+                URLPlayerConfig.MathExample.text = MathExample;
+                URLPlayerConfig.NeedNum = ExampleAnswer;
+            }
 
         foreach (XElement Cfg in tempElement.Elements("BlockConfigForWave" + waveNum))
         {
