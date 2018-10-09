@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ScoreUpdater : MonoSingleton<ScoreUpdater>
@@ -29,6 +30,6 @@ public class ScoreUpdater : MonoSingleton<ScoreUpdater>
 
     public void YouLose()
     {
-        Field.text = "You Lose";
+        SceneManager.LoadScene(0);
     }
 }

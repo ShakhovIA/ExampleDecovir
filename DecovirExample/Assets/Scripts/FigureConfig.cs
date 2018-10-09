@@ -74,6 +74,7 @@ public class FigureConfig : MonoBehaviour {
     public void CreateFigure()
     {
         GameObject Temp = Instantiate<GameObject>(gameObject, transform.parent);
+        MetaData.Instance().AllLiveFigures.Add(Temp);
 
         for (int i = 0; i < SizeY; i++)
         {

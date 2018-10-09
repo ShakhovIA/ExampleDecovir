@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\FigureConfig.cs" />
     <Compile Include="Assets\Scripts\FigureLogic.cs" />
+    <Compile Include="Assets\Scripts\MetaData.cs" />
     <Compile Include="Assets\Scripts\MonoSingleton.cs" />
     <Compile Include="Assets\Scripts\PlayerConfig.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />

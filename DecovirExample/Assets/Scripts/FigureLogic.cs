@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FigureLogic : MonoBehaviour {
+public class FigureLogic : MonoBehaviour
+{
 
     [SerializeField] private PlayerConfig URLPlayerCfg;
     [SerializeField] private FigureConfig URLFigureCfg;
+    private bool isLive = true;
 
-    private void LateUpdate()
+    private void Update()
     {
-        if(gameObject.transform.position.y<=URLPlayerCfg.transform.position.y)
+        if (gameObject.transform.position.y <= URLPlayerCfg.transform.position.y)
         {
             for (int i = 0; i < URLPlayerCfg.SizeY; i++)
                 for (int j = 0; j < URLPlayerCfg.SizeX; j++)
@@ -20,21 +22,27 @@ public class FigureLogic : MonoBehaviour {
                         {
                             if (gameObject.transform.position.x + (20 * a) <= URLPlayerCfg.transform.position.x + (20 * URLPlayerCfg.SizeX))
                             {
-                                if (URLFigureCfg.Num == URLPlayerCfg.NeedNum)
+                                if (isLive)
                                 {
-                                    StopAllCoroutines();
-                                    XMLReader.Instance().NextWave(PlayZone.CurrentZonePlay);
-                                    ScoreUpdater.Instance().Score++;
-                                    ScoreUpdater.Instance().UpdScore();
+                                    if (URLFigureCfg.Num == URLPlayerCfg.NeedNum)
+                                    {
+                                        XMLReader.Instance().NextWave(PlayZone.CurrentZonePlay);
+                                        ScoreUpdater.Instance().Score++;
+                                        ScoreUpdater.Instance().UpdScore();
 
+                                    }
+                                    else
+                                    {
+                                        ScoreUpdater.Instance().YouLose();
+
+                                    }
+                                    isLive = false;
+                                    foreach(var Temp in MetaData.Instance().AllLiveFigures)
+                                    {
+                                        Destroy(Temp, 0.05f);
+                                    }
+                                    MetaData.Instance().AllLiveFigures.Clear();
                                 }
-                                else
-                                {
-                                    ScoreUpdater.Instance().YouLose();
-                                    StopAllCoroutines();
-                                    Destroy(gameObject);
-                                }
-                                    gameObject.SetActive(false);
                             }
                         }
                     }
@@ -44,26 +52,31 @@ public class FigureLogic : MonoBehaviour {
                         {
                             if (gameObject.transform.position.x + (20 * a) >= URLPlayerCfg.transform.position.x)
                             {
-
-                                if (URLFigureCfg.Num == URLPlayerCfg.NeedNum)
+                                if (isLive)
                                 {
+                                    if (URLFigureCfg.Num == URLPlayerCfg.NeedNum)
+                                    {
+                                        XMLReader.Instance().NextWave(PlayZone.CurrentZonePlay);
+                                        ScoreUpdater.Instance().Score++;
+                                        ScoreUpdater.Instance().UpdScore();
+                                    }
+                                    else
+                                    {
+                                        ScoreUpdater.Instance().YouLose();
+                                    }
 
-                                    StopAllCoroutines();
-                                    XMLReader.Instance().NextWave(PlayZone.CurrentZonePlay);
-                                    ScoreUpdater.Instance().Score++;
-                                    ScoreUpdater.Instance().UpdScore();
+                                    isLive = false;
+                                    foreach (var Temp in MetaData.Instance().AllLiveFigures)
+                                    {
+                                        Destroy(Temp, 0.05f);
+                                    }
+                                    MetaData.Instance().AllLiveFigures.Clear();
+
                                 }
-                                else
-                                {
-                                    ScoreUpdater.Instance().YouLose();
-                                    StopAllCoroutines();
-                                    Destroy(gameObject);
-                                }
-                                gameObject.SetActive(false);
                             }
                         }
                     }
-                }      
+                }
         }
     }
 }

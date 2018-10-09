@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayZone : MonoBehaviour {
+public class PlayZone : MonoSingleton<PlayZone> {
 
     static public int M=40;
     static public int N=30;
@@ -10,12 +10,8 @@ public class PlayZone : MonoBehaviour {
     [SerializeField] private GameObject Cell;
     [SerializeField] private Transform Parent;
 
-    private void Start()
-    {
-        InitializeGameZone();
-    }
 
-    private void InitializeGameZone()
+    public void InitializeGameZone()
     {
         for (int i = 0; i < M; i++)
         {

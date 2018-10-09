@@ -9,6 +9,8 @@ public class XMLReader : MonoSingleton<XMLReader> {
     private XDocument XmlFile;
     private XElement XmlElement;
 
+    private bool Initialize = true;
+
     [SerializeField] private PlayerConfig URLPlayerConfig;
     [SerializeField] private FigureConfig URLFigureConfig;
 
@@ -31,6 +33,16 @@ public class XMLReader : MonoSingleton<XMLReader> {
 
     private void XmlParserConfig(XElement tempElement,int waveNum)
     {
+        if (Initialize)
+        {
+            foreach (XElement Cfg in tempElement.Elements("GameConfig"))
+            {
+                PlayZone.N = int.Parse(Cfg.Attribute("MapSizeN").Value);
+                PlayZone.M = int.Parse(Cfg.Attribute("MapSizeM").Value);
+                PlayZone.Instance().InitializeGameZone();
+            }
+            Initialize = false;
+        }
         if (waveNum == 0)
             foreach (XElement Cfg in tempElement.Elements("PlayerConfigForWave" + waveNum))
             {
@@ -59,6 +71,8 @@ public class XMLReader : MonoSingleton<XMLReader> {
                 URLPlayerConfig.Speed = Speed;
                 URLPlayerConfig.MathExample.text = MathExample;
                 URLPlayerConfig.NeedNum = ExampleAnswer;
+
+                print(MathExample);
             }
 
         foreach (XElement Cfg in tempElement.Elements("BlockConfigForWave" + waveNum))
@@ -82,7 +96,7 @@ public class XMLReader : MonoSingleton<XMLReader> {
 
         while (maxfigure > 0)
         {
-            yield return new WaitForSeconds(Random.Range(0.5f, 1.3f));
+            yield return new WaitForSeconds(Random.Range(1.3f, 2f));
             int Temp = Random.Range(example, example + Random.Range(example - 2, example + 2));
             if (maxfigure - 1 <= 0)
                 Temp = example;
